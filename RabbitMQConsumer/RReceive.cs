@@ -11,10 +11,11 @@ namespace RabbitMQConsumer
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "122.112.226.36",
+                HostName = "localhost",
                 UserName = "guest",
-                Password = "galp123456"
+                Password = "guest"
             };
+
             using (var connection = factory.CreateConnection())//创建连接
             using (var channel = connection.CreateModel())//创建通道
             {

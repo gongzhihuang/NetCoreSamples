@@ -12,14 +12,14 @@ namespace RabbitMQConsumer
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "122.112.226.36",
+                HostName = "localhost",
                 UserName = "guest",
-                Password = "galp123456"
+                Password = "guest"
             };
 
-            string exchangeName = "galp_online_exchange";
-            string queueName = "galp_online_bdls_queue";
-            string routeKey = queueName;
+            string exchangeName = "exchangeName";
+            string queueName = "queueName";
+            string routeKey = "routeKey";
 
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
