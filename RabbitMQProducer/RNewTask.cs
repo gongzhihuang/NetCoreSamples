@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 
 namespace RabbitMQProducer
@@ -14,30 +15,45 @@ namespace RabbitMQProducer
                 UserName = "guest",
                 Password = "galp123456"
             };
+
+            string exchangeName = "galp_online_exchange";
+            string queueName = "galp_online_bdls_queue";
+            string routeKey = "galp_online_bdls_queue";
+
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.ExchangeDeclare("exchange_name", ExchangeType.Direct, false, false, null);
+                channel.ExchangeDeclare(exchangeName, ExchangeType.Direct, false, false, null);
 
-                channel.QueueDeclare(queue: "task_queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
-                channel.QueueBind("task_queue", "exchange_name", "exchange_name", null);
+                channel.QueueBind(queueName, exchangeName, routeKey, null);
+
+                Console.WriteLine($"就绪");
 
                 string message;
                 do
                 {
                     message = Console.ReadLine();
+
+                    //Message message1 = new Message
+                    //{
+                    //    ProjectId = "111",
+                    //    Token = "xxxxxxxxxxxx",
+                    //};
+
+                    //var str = JsonConvert.SerializeObject(message1);
+                    //var body = Encoding.UTF8.GetBytes(str);
+
                     var body = Encoding.UTF8.GetBytes(message);
 
                     var properties = channel.CreateBasicProperties();
                     properties.Persistent = true;
 
-                    channel.BasicPublish(exchange: "", routingKey: "task_queue", basicProperties: properties, body: body);
+                    channel.BasicPublish(exchange: exchangeName, routingKey: routeKey, basicProperties: properties, body: body);
                     Console.WriteLine($"发送消息: {message}");
                 } while (message.Trim().ToLower() != "exit");
             }
-
-            Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
         }
     }

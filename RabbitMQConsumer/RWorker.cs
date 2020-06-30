@@ -16,14 +16,19 @@ namespace RabbitMQConsumer
                 UserName = "guest",
                 Password = "galp123456"
             };
+
+            string exchangeName = "galp_online_exchange";
+            string queueName = "galp_online_bdls_queue";
+            string routeKey = queueName;
+
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                channel.ExchangeDeclare("exchange_name", ExchangeType.Direct, false, false, null);
+                channel.ExchangeDeclare(exchangeName, ExchangeType.Direct, false, false, null);
 
-                channel.QueueDeclare(queue: "task_queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+                channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
-                channel.QueueBind("task_queue", "exchange_name", "exchange_name", null);
+                channel.QueueBind(queueName, exchangeName, routeKey, null);
 
 
                 channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
@@ -44,7 +49,7 @@ namespace RabbitMQConsumer
                     Console.WriteLine($"已发送应答: {ea.DeliveryTag}");
                 };
 
-                channel.BasicConsume(queue: "task_queue", autoAck: false, consumer: consumer);
+                channel.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
 
                 Console.WriteLine(" Press [enter] to exit.");
                 Console.ReadLine();
