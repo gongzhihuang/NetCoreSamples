@@ -31,6 +31,7 @@ namespace BackgroundServiceConsole
         {
             base.Dispose();
             _timer?.Dispose();
+            Console.WriteLine("dispose");
         }
     }
 }
