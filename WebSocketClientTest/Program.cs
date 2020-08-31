@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Websocket.Client;
 
 namespace WebSocketClientTest
 {
     class Program
     {
-        static async System.Threading.Tasks.Task Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
             var exitEvent = new ManualResetEvent(false);
-            var url = new Uri("wss://localhost:5001/api/Test/stream");
+            //var url = new Uri("wss://localhost:5001/api/Test/stream");
+            var url = new Uri("wss://localhost:27926/testWebSocket");
 
             using (var client = new WebsocketClient(url))
             {
@@ -26,10 +29,28 @@ namespace WebSocketClientTest
                     Console.WriteLine($"收到消息: {msg}");
                 });
 
-                await client.Start();
+                client.Start().Wait();
+
+                //Task.Run(() => StartSendingPing(client));
 
                 exitEvent.WaitOne();
+
             }
         }
+
+        private static async Task StartSendingPing(IWebsocketClient client)
+        {
+            while (true)
+            {
+                await Task.Delay(5000);
+
+                if (!client.IsRunning)
+                    continue;
+
+                client.Send($"ping{DateTime.Now.Second}");
+                Console.WriteLine($"ping{DateTime.Now.Second}");
+            }
+        }
+
     }
 }
