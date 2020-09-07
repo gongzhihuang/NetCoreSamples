@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketClientTest", "WebS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketServerWithAspNetCore", "WebSocketServerWithAspNetCore\WebSocketServerWithAspNetCore.csproj", "{BAA40829-A45D-4754-964C-E255306F1DAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABPTestGuid", "ABPTestGuid\ABPTestGuid.csproj", "{D64A671A-6205-4B71-AFD9-E1566DDC9330}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,5 +75,9 @@ Global
 		{BAA40829-A45D-4754-964C-E255306F1DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAA40829-A45D-4754-964C-E255306F1DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAA40829-A45D-4754-964C-E255306F1DAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64A671A-6205-4B71-AFD9-E1566DDC9330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64A671A-6205-4B71-AFD9-E1566DDC9330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64A671A-6205-4B71-AFD9-E1566DDC9330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64A671A-6205-4B71-AFD9-E1566DDC9330}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
