@@ -9,7 +9,7 @@ namespace HangfireTest.Jobs
 
         public void TestBackgroundMethods()
         {
-            Console.WriteLine("测试 TestBackgroundMethods");
+            Console.WriteLine("测试 TestBackgroundMethods " + DateTime.Now);
         }
     }
 }

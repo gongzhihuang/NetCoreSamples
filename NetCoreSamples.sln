@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangfireTest", "HangfireTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AliyunOSSTest", "AliyunOSSTest\AliyunOSSTest.csproj", "{2090B51B-719E-4744-8C32-30BB9DC1163D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzTest", "QuartzTest\QuartzTest.csproj", "{62D5C219-CD6D-44DC-A89A-877AA5D05927}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,5 +93,9 @@ Global
 		{2090B51B-719E-4744-8C32-30BB9DC1163D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2090B51B-719E-4744-8C32-30BB9DC1163D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2090B51B-719E-4744-8C32-30BB9DC1163D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D5C219-CD6D-44DC-A89A-877AA5D05927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D5C219-CD6D-44DC-A89A-877AA5D05927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D5C219-CD6D-44DC-A89A-877AA5D05927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D5C219-CD6D-44DC-A89A-877AA5D05927}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
