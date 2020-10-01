@@ -28,7 +28,7 @@ namespace QuartzTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IJobFactory, JobFactorys>(); //Job工厂
+            services.AddSingleton<IJobFactory, JobFactory>(); //Job工厂
             services.AddTransient<HelloJob>();           //计划任务
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例
 

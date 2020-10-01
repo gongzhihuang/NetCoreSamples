@@ -4,11 +4,11 @@ using Quartz.Spi;
 
 namespace QuartzTest
 {
-    public class JobFactorys : IJobFactory
+    public class JobFactory : IJobFactory
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public JobFactorys(IServiceProvider serviceProvider)
+        public JobFactory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
