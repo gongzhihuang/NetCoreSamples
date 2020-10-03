@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Quartz;
 
 namespace QuartzTest
@@ -9,12 +10,14 @@ namespace QuartzTest
     public class QuartzService : BackgroundService
     {
         private readonly IScheduler _scheduler;
-
         private readonly IServiceProvider _serviceProvider;
-        public QuartzService(IScheduler scheduler, IServiceProvider serviceProvider)
+        private readonly ILogger<QuartzService> _logger;
+
+        public QuartzService(IScheduler scheduler, IServiceProvider serviceProvider, ILogger<QuartzService> logger)
         {
             _scheduler = scheduler;
             _serviceProvider = serviceProvider;
+            _logger = logger;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
@@ -28,7 +31,7 @@ namespace QuartzTest
                                        .WithCronSchedule("*/5 * * * * ?")
                                        .Build();
 
-            await _scheduler.ScheduleJob(job, cronTrigger);
+            await _scheduler.ScheduleJob(job, cronTrigger, cancellationToken);
 
             await _scheduler.Start(cancellationToken);
         }
